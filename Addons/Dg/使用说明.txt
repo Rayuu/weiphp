@@ -1,0 +1,19 @@
+#使用说明#
+
+1、将Dg文件夹上传到服务器weiphp的Addons根目录
+2、在weiphp后台安装Dg插件
+3、将附录代码粘贴到Application/Home/Model/WeixinModel.class.php中
+4、在微信中回复“点歌”或者“点歌歌曲名”即可触发本插件
+
+
+#附录代码#
+
+	/* 回复不带缩略图的音乐消息 */
+	public function replyMusicnothumb($title = '', $description = '', $music_url, $HQ_music_url) {
+		$msg ['Music'] ['Title'] = $title;
+		$msg ['Music'] ['Description'] = $description;
+		$msg ['Music'] ['MusicUrl'] = $music_url;
+		$msg ['Music'] ['HQMusicUrl'] = $HQ_music_url;
+		$this->_replyData ( $msg, 'music' );
+	}
+

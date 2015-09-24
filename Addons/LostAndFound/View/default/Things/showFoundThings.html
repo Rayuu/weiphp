@@ -1,0 +1,46 @@
+﻿<include file="Public/mobile_head"/>	
+<link href="{:ADDON_PUBLIC_PATH}/card.css?v={:SITE_VERSION}" rel="stylesheet" type="text/css">
+
+<body>
+	<div id="container" class="container body">
+        <h5 class="page_title top_line">最新招领信息</h5>
+    	<ul class="toggle_list" style="margin-top:50px">
+        <volist name='list' id="vo">
+        	<li class="single_item m_15 p_10">
+            	<div class="title icon_arrow_right">
+                	<img width="30" class="fl mr_10" src="__IMG__/m/pic_card.png"/>
+                	<p><strong>{$vo.title}</strong></p>
+                </div>
+                <div class="content">
+                <p>发布时间：{$vo.cTime|time_format}</p>
+		<p>拾获地点：{$vo.address}</p>
+		<p>联系人：{$vo.username}</p>
+		<p>联系电话：{$vo.phone}</p>
+                	<p>{$vo.info|htmlspecialchars_decode}</p>
+                </div>
+            </li>
+            </volist>
+        </ul>   	
+        <if condition="empty($list)" >
+        	<div class="empty_default">
+            	<p><img src="{:ADDON_PUBLIC_PATH}/vip_card_gray.png"/><br/>目前还没有招领信息~</p>
+            </div>
+        </if>
+        <p class="copyright">{$system_copy_right}</p>
+        <nav class="bottom_nav">
+            <a class="icon_card" href="{:addons_url('LostAndFound://LostAndFound/index')}">首页</a>
+        <!--        <a class="icon_crown" href="{:addons_url($_REQUEST ['_addons'].'://'.$_REQUEST ['_controller'].'/introduction')}">特权</a>-->
+            <a class="icon_time" href="{:addons_url('LostAndFound://Things/showLostThings')}">寻物信息</a>
+            <a class="icon_tag cur" href="{:addons_url('LostAndFound://Things/showFoundThings')}">招领信息</a>
+        <!--        <a class="icon_gift" href="{:addons_url($_REQUEST ['_addons'].'://'.$_REQUEST ['_controller'].'/exchange')}">兑换</a>
+            <a class="icon_time" href="{:addons_url($_REQUEST ['_addons'].'://'.$_REQUEST ['_controller'].'/score')}">签到</a>-->
+        </nav>
+        <div class="bottom_nav_blank"></div>       
+    </div>
+</body>
+<script type="text/javascript">
+document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+	WeixinJSBridge.call('hideToolbar');
+});
+</script>
+</html>

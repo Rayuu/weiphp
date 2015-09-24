@@ -1,0 +1,39 @@
+﻿<include file="Public/mobile_head"/>	
+<link href="{:ADDON_PUBLIC_PATH}/card.css?v={:SITE_VERSION}" rel="stylesheet" type="text/css">
+
+<body>
+	<div id="container" class="container body">
+        <div class="p_10"> 
+            <div class="vipcard_content">
+                <div class="card" style="background-image:url({$config.img});">
+                    <span class="card_name">{$config.title}</span>
+                    <!--<span class="card_num">卡号：{$config.length}</span>-->
+                    <div class="card_mask"></div>
+                </div>
+                <div class="card_info">
+                    <div class="tb"><a href="{:addons_url('Card://Card/writeCardInfo')}" class="btn m_15 flex_1">我丢东西了</a></div>
+		    <div class="tb"><a href="{:addons_url('Card://Card/writeCardInfo')}" class="btn m_15 flex_1" style="background:#08a5e0">我捡到东西了</a></div>
+                    
+                    <div class="single_item m_15">
+                        <a class="p_10 arrow_icon mr_10" href="">失物招领信息发布说明</a>
+                        <div class="single_item_line"></div>
+                        <a class="p_10 arrow_icon mr_10" href="{:addons_url('LostAndFound://LostAndFound/myinfo')}">我的个人资料</a>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <p class="copyright">{$system_copy_right}</p>
+    </div>
+    
+</body>
+<script type="text/javascript">
+		if($('#select_background').val()==11){
+			var cardBgUrl = $("#hidden_background_custom").val();
+		}else{
+			var cardBgUrl = '{:ADDON_PUBLIC_PATH}/card_bg_'+$('#select_background').val()+".png";
+
+		}	
+		$('#cardBg').attr("href",cardBgUrl);
+</script>
+</html>

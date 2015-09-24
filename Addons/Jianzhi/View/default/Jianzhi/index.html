@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>兼职列表</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maxinum-scale=1.0,user-scalable=no">
+	<link rel="stylesheet" type="text/css" href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<script type="text/javascript" src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+	<script type="text/javascript" src="http://cdn.bootcss.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<style type="text/css">
+		body{padding-top:40px;background: #efefef;}
+		#index-header{}
+		#index-header .navbar{min-height: 35px;background: #4DB849;text-align: center;}
+		#index-header .navbar-brand{height: 35px;padding:7px 15px 8px;color:#fff;}
+		#index-header .title{height: 35px;line-height: 35px;font-size: 18px;color: #fff;font-weight: 700}
+		
+		#index-content a{color:#333;text-decoration:none}
+		#index-content .well{background: #fff;margin-bottom: 10px}
+		#index-content .well h4 small{color:#08a5e0;margin-right:15px;}
+	</style>
+</head>
+<body>
+<!-- header begin -->
+<header class="index-header" id="index-header">
+	<nav class="navbar navbar-fixed-top">
+		<a class="navbar-brand" href=""><span class="glyphicon glyphicon-home"></span></a>
+		<span class="title">兼职信息栏</span>
+		<a class="navbar-brand pull-right" href="{:U('fabu',array('token'=>get_token(),'uid'=>get_mid()))}">发布>></a>
+	</nav>
+</header>
+
+<div id="index-content">
+	<volist name="list" id="vo">
+	<a href="{:U('view',array('id'=>$vo['id'],'token'=>get_token(),'uid'=>get_mid()))}">
+	<div class="well">
+		<h4><small>{$vo.id}</small>{$vo.title}</h4>
+		<h5><span class="">点击：55</span><span class="pull-right">{$vo.cTime|time_format}</span></h5>
+		<span class="clearfix"></span>
+
+		<h5>{$vo.content}</h5>
+		<h5><span class="glyphicon glyphicon-phone"></span>{$vo.contact}</h5>
+		<h5><a class="pull-right">评论：{$vo.comment_num}</a></h5>
+	</div>
+	</a>
+	</volist>
+
+	
+
+
+
+</div>
+</body>
+</html>

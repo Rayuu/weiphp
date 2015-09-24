@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>兼职列表</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maxinum-scale=1.0,user-scalable=no">
+	<link rel="stylesheet" type="text/css" href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<script type="text/javascript" src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+	<script type="text/javascript" src="http://cdn.bootcss.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<style type="text/css">
+		body{padding-top:40px;background: #efefef;}
+		#index-header{}
+		#index-header .navbar{min-height: 35px;background: #4DB849;text-align: center;}
+		#index-header .navbar-brand{height: 35px;padding:7px 15px 8px;color:#fff;}
+		#index-header .title{height: 35px;line-height: 35px;font-size: 18px;color: #fff;font-weight: 700}
+
+		#index-content .well{background: #fff;margin-bottom: 10px}
+
+
+
+	</style>
+</head>
+<body>
+<!-- header begin -->
+<header class="index-header" id="index-header">
+	<nav class="navbar navbar-fixed-top">
+		<a class="navbar-brand" href="{:U('index')}"><<列表</a>
+		<span class="title">信息详情</span>
+		<a class="navbar-brand pull-right" href="{:U('fabu')}">发布>></a>
+	</nav>
+</header>
+
+<!-- index-content -->
+<div id="index-content">
+	<div class="well">
+
+		<h3>{$j_info.title}</h3>
+		<h5><span class="pull-left">点击：22</span>&nbsp;&nbsp;<span class="pull-left">评论：{$comment_num}</span><span class="pull-right">{$j_info.cTime|time_format}</span></h5>
+		<div class="clearfix"></div>
+		<h5>{$j_info.content}</h5>
+		<h5><span class="glyphicon glyphicon-phone"></span>{$j_info.contact}</h5>
+		<div class="divider"></div>
+		<form method="post">
+			<div class="form-group">
+				<textarea class="form-control" rows="6" name="comment"  placeholder="评论内容/250字以内"></textarea>
+			</div>
+			<input type="hidden" name="j_id" value="{$j_info.id}" />
+			<div class="text-right">
+				<button class="btn btn-success">评论</button>
+				<!--<h6>没有评论</h6>-->
+			</div><br>
+		</form>
+
+		<volist name="comment" id="vo">
+		<ul class="list-group">
+			<li class="list-group-item"><if condition="$user['nickname'] neq ''">{$user.nickname}<else/>游客</if><span class="pull-right">{$vo.cTime|time_format}</span></li>
+			<li class="list-group-item">{$vo.comment}</li>
+		</ul>
+		</volist>
+		
+	</div>
+
+</div>
+</body>
+</html>

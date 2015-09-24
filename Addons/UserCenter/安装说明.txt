@@ -1,0 +1,10 @@
+#功能介绍#
+本插件在weiphp自带微信用户中心插件（UserCenter）的基础上增加了用户信息绑定、用户头像上传、积分记录查询等功能
+
+#安装说明#
+1、在weiphp管理后台模型管理页面，给follow模型新增一个字段mydesc（个人简介，文本框类型）
+2、将本UserCenter文件夹上传到服务器，覆盖掉原来的UserCenter文件夹（建议对原来的UserCenter文件夹先备份再覆盖）
+
+#技术支持#
+艾豆乐园：http://idouly.com
+QQ群：452207697

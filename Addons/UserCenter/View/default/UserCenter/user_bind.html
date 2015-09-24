@@ -1,0 +1,251 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>个人信息绑定</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="{:ADDON_PUBLIC_PATH}/css/mui.min.css">
+		<script src="{:ADDON_PUBLIC_PATH}/js/jquery-1.9.1.min.js"></script>
+		<style>
+			html,
+			body {
+				background-color: #efeff4;
+			}
+			.mui-bar-nav{background: rgb(19,177,152);}
+			.mui-title{color: #ffffff;}
+			.mui-action-back{color: #ffffff;}
+			.mui-bar-tab .mui-tab-item.mui-active{color: rgb(19,177,152);}
+			.mui-bar-tab .mui-tab-item{font-weight: 600;}
+			#like{position: absolute;left: 35%;}
+    			#wenke{position: absolute;right: 10%;}
+			.mui-table-view{margin-bottom:10px;}
+			.mui-table-view img{width:60px;height:60px;margin-right:30px;}
+
+			#form{position:absolute;top:0px;z-index:9999;width:100%;height:63px;background:red;opacity:0}
+		</style>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+	$("input[name=sex]").click(function(){
+		//alert(this.checked);
+		//this.value=4;
+		//this.checked=true;
+	})
+})
+
+  	function uploadImg(){
+  		var tt=document.getElementById("myfile");
+  		var form=document.getElementById("form");
+  		form.submit();
+  		//alert(tt.value+"ppp");
+  	}
+
+function submitData(){
+	//alert("sdsd");
+	var picSrc=document.getElementById("picSrc");
+	var nickname=$("input[name=nickname]");
+	var sex=$("input[checked=true]");
+	var mobile=$("input[name=mobile]");
+	var mydesc=$("textarea[name=mydesc]");
+	//alert(sex.val());return false;
+	if(nickname.val()==''){
+		alert("昵称不能为空哦~");
+		nickname.focus();
+		return false;
+	}
+
+	//alert(picSrc.src+nickname.val()+sex.val()+mobile.val()+mydesc.val());
+	// ajax保存个人资料
+	$.ajax({
+		url:"{:U('saveUserInfo','','')}",
+		type:"post",
+		dataType:"json",
+		data:"headimgurl="+picSrc.src+"&nickname="+nickname.val()+"&mobile="+mobile.val()+"&mydesc="+mydesc.val(),
+		success:function(data){
+			alert(data.msg);
+			if(data.jumpurl){location.href=data.jumpurl;}
+			
+		},
+		error:function(){
+			alert("error");
+		}
+	});
+	//alert(nickname.val()+"ds");
+	//alert(picSrc.src+"ppp");
+}
+  </script>
+
+	</head>
+
+	<body>
+	<div class="mui-content">
+
+<ul class="mui-table-view">
+<form method="post" enctype="multipart/form-data" id="form">
+  <input type="file" name="myfile" id="myfile" onchange="return uploadImg();">
+ <!--  <input type="submit" value="确认上传"> -->
+</form>
+	<li class="mui-table-view-cell mui-media" id="headimg" style="position:relative">
+		<a href="#" class="mui-navigate-right">
+			<img class="mui-media-object mui-pull-right" src="{$picName}" id="picSrc">
+			<div class="mui-media-body" style="margin-top:12px;">
+				头像
+			</div>
+		</a>
+	</li>
+</ul>
+		<form class="mui-input-group" method="post" action="">
+			
+			<div class="mui-input-row">
+				<label>昵称</label>
+				<input type="text" name="nickname" class="mui-input-clear" placeholder="请输入你的微信昵称" value="{$followInfo.nickname}" id="nickname">
+			</div>
+			<div class="mui-input-row">
+				<label>性别</label>
+				<div class="mui-input-row mui-radio mui-left" id="like">
+					<label>男</label>
+					<input name="sex" type="radio" value="1" <if condition="$followInfo['sex'] eq 1">checked="true"</if>>
+				</div>
+				<div class="mui-input-row mui-radio mui-left" id="wenke">
+					<label>女</label>
+					<input name="sex" type="radio" value="2" <if condition="$followInfo['sex'] eq 2">checked="true"</if>>
+				</div>
+			</div>
+			<div class="mui-input-row">
+				<label>手机号</label>
+				<input type="number" name="mobile" class="mui-input-clear" placeholder="请输入你的手机号" value="{$followInfo.mobile}" id="score">
+			</div>
+			<div class="mui-input-row" style="height:120px">
+				<label>个人简介</label>
+				<textarea name="mydesc" id="mydesc" rows="4">{$followInfo.mydesc}</textarea>
+			</div>
+			
+			<div class="mui-button-row">
+				<button class="mui-btn mui-btn-primary" type="button" onclick="return submitData();">确认</button>&nbsp;&nbsp;
+				<button class="mui-btn mui-btn-primary" onclick="return false;">取消</button>
+			</div>
+		</form>
+	</div>
+
+	</body>
+
+<script type="text/javascript" src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript" src="http://cdn.bootcss.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+  /*
+   * 注意：
+   * 1. 所有的JS接口只能在公众号绑定的域名下调用，公众号开发者需要先登录微信公众平台进入“公众号设置”的“功能设置”里填写“JS接口安全域名”。
+   * 2. 如果发现在 Android 不能分享自定义内容，请到官网下载最新的包覆盖安装，Android 自定义分享接口需升级至 6.0.2.58 版本及以上。
+   * 3. 常见问题及完整 JS-SDK 文档地址：http://mp.weixin.qq.com/wiki/7/aaa137b55fb2e0456bf8dd9148dd613f.html
+   *
+   * 开发中遇到问题详见文档“附录5-常见错误及解决办法”解决，如仍未能解决可通过以下渠道反馈：
+   * 邮箱地址：weixin-open@qq.com
+   * 邮件主题：【微信JS-SDK反馈】具体问题
+   * 邮件内容说明：用简明的语言描述问题所在，并交代清楚遇到该问题的场景，可附上截屏图片，微信团队会尽快处理你的反馈。
+   */
+  wx.config({
+    debug: false,
+    appId: '<?php echo $signPackage["appId"];?>',
+    timestamp: <?php echo $signPackage["timestamp"];?>,
+    nonceStr: '<?php echo $signPackage["nonceStr"];?>',
+    signature: '<?php echo $signPackage["signature"];?>',
+    jsApiList: [
+      // 所有要调用的 API 都要加到这个列表中
+	'checkJsApi',
+        'onMenuShareTimeline',
+        'onMenuShareAppMessage',
+        'onMenuShareQQ',
+        'onMenuShareWeibo',
+        'hideMenuItems',
+        'showMenuItems',
+        'hideAllNonBaseMenuItem',
+        'showAllNonBaseMenuItem',
+        'translateVoice',
+        'startRecord',
+        'stopRecord',
+        'onRecordEnd',
+        'playVoice',
+        'pauseVoice',
+        'stopVoice',
+        'uploadVoice',
+        'downloadVoice',
+        'chooseImage',
+        'previewImage',
+        'uploadImage',
+        'downloadImage',
+        'getNetworkType',
+        'openLocation',
+        'getLocation',
+        'hideOptionMenu',
+        'showOptionMenu',
+        'closeWindow',
+        'scanQRCode',
+        'chooseWXPay',
+        'openProductSpecificView',
+        'addCard',
+        'chooseCard',
+        'openCard'
+    ]
+  });
+
+  wx.ready(function () {
+       //alert("ddd");
+	
+	$("#headimg").click(function(){
+		//alert("click");
+ var images = {
+    localId: [],
+    serverId: []
+  };
+   wx.chooseImage({
+      success: function (res) {
+        images.localId = res.localIds;
+        //alert('已选择 ' + res.localIds.length + ' 张图片');
+if (images.localId.length == 0) {
+      alert('请先使用 chooseImage 接口选择图片');
+      return false;
+    }
+if (images.localId.length > 1) {
+      alert('你选择了'+images.localId.length+"张图片，请选择其中一张作为你的图像上传");
+      return false;
+    }
+    var i = 0, length = images.localId.length;
+    images.serverId = [];
+    function upload() {
+      wx.uploadImage({
+        localId: images.localId[i],
+        success: function (res) {
+          i++;
+          // alert('已上传：' + i + '/' + length);
+		alert("头像上传成功"+res.serverId);
+		//var test="{$access_token}"+"---"+res.serverId;
+		//$("#test").html(test+"***");
+		//$("#ttt").html(test+"###");
+          images.serverId.push(res.serverId);
+          if (i < length) {
+            upload();
+          }
+        },
+        fail: function (res) {
+          alert(JSON.stringify(res));
+        }
+      });
+    }
+    upload();
+      }
+    });
+
+    
+
+	});	
+  });
+</script>
+
+</html>

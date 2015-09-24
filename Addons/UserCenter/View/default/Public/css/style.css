@@ -1,0 +1,140 @@
+body{
+	background-color: rgba(255,186,78,.98);
+}
+
+a{
+	color: #fff;
+}
+.mui-bar{
+	background-color: rgba(255,186,78,.98);
+ 
+}
+
+.mui-bar .mui-icon{
+	font-size: 18px;
+	position: relative;
+	top: 3px;
+}
+.mui-title{
+	box-shadow: 0 1px 6px rgba(255,186,78,.98);
+}
+
+.mui-title{
+	
+	color: #fff;
+}
+
+.mui-content{
+	background: transparent;
+}
+
+.circle{
+	width: 300px;
+    height: 300px;
+    background: red;
+    text-align: center;
+    border-radius: 150px;
+    margin: 50px auto;
+	background-color: rgba(239,154,12,.98);
+	line-height: 300px;
+	color: #fff;
+	font-size: 100px;
+	position: relative;
+}
+
+.circle .kqzl{
+	font-size: 18px;
+	width: 120px;
+	height: 40px;
+	border-radius: 20px;
+	line-height: 40px;
+	position: absolute;
+	top: 50px;
+	left: 50%;
+	margin-left: -60px;
+}
+
+.circle .wrcd{
+	font-size: 18px;
+	background-color: rgba(226,145,10,.98);
+	width: 120px;
+	height: 40px;
+	border-radius: 20px;
+	line-height: 40px;
+	position: absolute;
+	bottom:50px;
+	left: 50%;
+	margin-left: -60px;
+}
+
+.data_ul{
+	width: 100%;
+	margin: auto;
+}
+.data_ul li{
+	text-indent: -30px;
+	list-style: none;
+	float: left;
+	width: 25%;
+	text-align: center;
+	color: rgb(196,122,5);
+	font-size: 18px;
+	font-weight: 700;
+}
+
+p{
+	color: #fff;
+	padding:0px 20px;
+	margin: 10px auto;
+	position: relative;
+	top:20px;
+}
+
+.green{
+	background-color: rgba(63,184,73,.98);
+}
+
+.green .mui-bar{
+	background-color: rgba(100,206,108,.98);
+ }
+ 
+ .green .mui-bar .mui-title{
+	box-shadow: 0 1px 6px rgba(100,206,108,.98);
+}
+
+.green .circle{
+	background-color: rgba(43,117,53,.98);
+}
+
+.green .circle .wrcd{
+	background-color: rgba(31,163,41,.98);
+}
+
+.green .data_ul li{
+	color: rgb(28,138,36);
+}
+
+
+.yellow{
+	background-color: rgba(255,186,78,.98);
+}
+
+.yellow .mui-bar{
+	background-color: rgba(255,186,78,.98);
+ }
+ 
+ .yellow .mui-bar .mui-title{
+	box-shadow: 0 1px 6px rgba(255,186,78,.98);
+}
+
+.yellow .circle{
+	background-color: rgba(239,154,12,.98);
+}
+
+.yellow .circle .wrcd{
+	background-color: rgba(226,145,10,.98);
+}
+
+.yellow .data_ul li{
+	color: rgb(196,122,5);
+}
